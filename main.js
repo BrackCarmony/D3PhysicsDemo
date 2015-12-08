@@ -2,17 +2,26 @@
 console.log("Here I am");
 
 
-var myImage = new Image(100, 200);
-myImage.src = 'http://ih1.redbubble.net/image.11076931.0263/sticker,375x360.png';
-//console.log(myImage);
+var myImage = new Image();
 
-var canvas = document.createElement('canvas');
-canvas.width = myImage.width;
-canvas.height = myImage.height;
-canvas.getContext('2d').drawImage(img,0,0,img.width, img.height);
+myImage.addEventListener('load', function(){
+  console.log("I be here");
+  var canvas = document.createElement('canvas');
+  canvas.width = myImage.width;
+  canvas.height = myImage.height;
+  canvas.getContext('2d').drawImage(myImage,0,0,myImage.width, myImage.height);
 
-var pixelData = canvas.getContext('2d').getImageData(100,200, 1, 1).data;
-console.log(pixelData);
+  var pixelData = canvas.getContext('2d').getImageData(myImage.width/2,myImage.height/2, 1, 1).data;
+  console.log(pixelData);
+
+  document.body.appendChild(canvas);
+
+
+});
+myImage.src = 'sticker,375x360.png';
+console.log(myImage);
+
+
 
 var width = 500;
 var height = 500;
